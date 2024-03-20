@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: worker-deployment
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: worker-deployment
+      component: worker
   template:
     metadata:
       labels:
-        app: worker-deployment
+        component: worker
     spec:
       containers:
-      - name: worker
-        image: stephengrider/multi-worker
-        env:
-          - name: REDIS_HOST
-            value: redis-cluster-ip-service
-          - name: REDIS_PORT
-            value: "6379"
-
+        - name: worker
+          image: rallycoding/multi-worker
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'

@@ -14,26 +14,24 @@ spec:
     spec:
       containers:
         - name: server
-          image: stephengrider/multi-server
+          image: rallycoding/multi-server
           ports:
             - containerPort: 5000
           env:
             - name: REDIS_HOST
-              value: redis_cluster_ip_service
-            - name: REDIS_POST
-              value: "6379"
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'
             - name: PGUSER
               value: postgres
             - name: PGHOST
               value: postgres-cluster-ip-service
             - name: PGPORT
-              value: "5432" 
+              value: '5432'
             - name: PGDATABASE
               value: postgres
-            - name: POSTGRES_PASSWORD
-              valueFrom: 
+            - name: PGPASSWORD
+              valueFrom:
                 secretKeyRef:
                   name: pgpassword
                   key: PGPASSWORD
-
-
